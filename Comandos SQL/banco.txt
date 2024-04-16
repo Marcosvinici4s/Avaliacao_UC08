@@ -1,7 +1,7 @@
-create database nome_do_banco; //cria base de dados
-use nome_do_banco;   // usa a base de dados
+create database nome_do_banco; 
+use nome_do_banco;  
 
-// Cria a tabela cliente
+
 CREATE TABLE Cliente (
 	idCliente INT NOT NULL AUTO_INCREMENT,
 	nome VARCHAR(45) NOT NULL,	
@@ -10,7 +10,7 @@ CREATE TABLE Cliente (
 	PRIMARY KEY(idCliente)
  );
 
-// Cria a tabela Servico
+
 
 CREATE TABLE Servico (
 	idServico INT NOT NULL AUTO_INCREMENT,
@@ -36,7 +36,7 @@ CREATE TABLE Agenda (
 
 
 
-DESCRIBE Cliente;     // mostra a estrutura da tabela
+DESCRIBE Cliente;    
 desc Cliente;   
 
 
