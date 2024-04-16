@@ -1,33 +1,35 @@
-CADASTRO
-CREATE DATABASE cadastro
-USE cadastro
-CREATE TABLE pessoa (
-    id_pessoa INT PRIMARY KEY,
-    Nome VARCHAR(100),
-    Sexo CHAR(1),
-    CPF VARCHAR(14),
-    data_nascimento DATE,
-    Fk_endereco INT,
-    Numero_casa VARCHAR(10),
-    FOREIGN KEY (Fk_endereco) REFERENCES endereco(id_endereco)
+create database Usuario_Endereco_Telefone
+use usuario_endereco_telefone;
+
+create table Endereco(
+	idEndereco int not null auto_increment,
+	logradouro varchar(200) not null,
+	bairro varchar(45) not null,
+	cep decimal(8) not null,
+	cidade varchar(100) not null,
+	estado varchar(45) not null,
+	complemento varchar(100),
+	primary key(idEndereco)
 );
 
-CREATE TABLE telefone (
-    id_telefone INT PRIMARY KEY,
-    Numero VARCHAR(20),
-    Operadora VARCHAR(50),
-    DDD VARCHAR(3),
-    Fk_pessoa INT,
-    FOREIGN KEY (Fk_pessoa) REFERENCES pessoa(id_pessoa)
+create table Pessoa(
+	idPessoa int not null auto_increment,
+	cpf decimal(11) not null,
+	nome varchar(45) not null,
+	data_nascimento date not null,
+	sexo varchar(1) not null,
+	numero_casa int not null,
+	fk_idEndereco int not null,
+	primary key(idPessoa),
+	foreign key(fk_idEndereco) references Endereco(idEndereco)
 );
 
-
-CREATE TABLE endereco (
-    id_endereco INT PRIMARY KEY,
-    Logradouro VARCHAR(200),
-    Estado VARCHAR(50),
-    Cidade VARCHAR(100),
-    Bairro VARCHAR(100),
-    Cep VARCHAR(9),
-    Complemento VARCHAR(200)
+create table Telefone(
+	idTelefone int not null auto_increment,
+	numero decimal(9) not null,
+	operadora varchar(45) not null,
+	ddd decimal(2) not null,
+	fk_idPessoa int not null,
+	primary key(idTelefone),
+	foreign key(fk_idPessoa) references Pessoa(idPessoa)
 );
