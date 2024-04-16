@@ -1,31 +1,32 @@
-ONG
-CREATE DATABASE ong
-USE ong
-CREATE TABLE usuario (
-    id_usuario INT PRIMARY KEY,
-    Nome VARCHAR(100),
-    Endereco VARCHAR(200),
-    Email VARCHAR(100),
-    WhatsApp VARCHAR(20)
+CREATE DATABASE OngSite;
+USE Barbearia;
+
+CREATE TABLE Ong (
+	idOng INT NOT NULL AUTO_INCREMENT,
+	nome VARCHAR(45) NOT NULL,
+	endereco VARCHAR(100) NOT NULL,
+	email VARCHAR(45) NOT NULL,
+	whatsapp DECIMAL(11),
+	PRIMARY KEY(idOng)
 );
 
-
-CREATE TABLE ocorrencia (
-    id_ocorrencia INT PRIMARY KEY,
-    Descricao TEXT,
-    Data DATE,
-    Imagem VARCHAR(200), 
-    Endereco VARCHAR(200),
-    Fk_usuario INT,
-    Fk_ong INT,
-    FOREIGN KEY (Fk_usuario) REFERENCES usuario(id_usuario)
-
+CREATE TABLE Usuario (
+	idUsuario INT NOT NULL AUTO_ICREMENT,
+	nome VARCHAR(45) NOT NULL,
+	endereco VARCHAR(100),
+	whatsapp DECIMAL(11),
+	PRIMARY KEY(idUsuario)
 );
 
-CREATE TABLE ong (
-    id_ong INT PRIMARY KEY,
-    Nome VARCHAR(100),
-    Endereco VARCHAR(200),
-    Email VARCHAR(100),
-    WhatsApp VARCHAR(20)
+CREATE TABLE Ocorrencia (
+	idOcorrencia INT NOT NULL AUTO_INCREMENT,
+	descricao VARCHAR(1000) NOT NULL,
+	endereco VARCHAR(100) NOT NULL,
+	data DATETIME NOT NULL,
+	imagem BLOB,
+	fk_idOng INT NOT NULL,
+	fk_idUsuario INT NOT NULL,
+	PRIMARY KEY(idOcorrencia),
+	FOREIGN KEY(fk_idOng) REFERENCES Ong(idOng),
+	FOREIGN KEY(fk_idUsuario) REFERENCES Usuario(idUsuario)
 );
